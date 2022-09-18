@@ -15,10 +15,10 @@ class CreateTravelHistoriesTable extends Migration
     {
         Schema::create('travel_histories', function (Blueprint $table) {
             $table->id();
-            $table->driver_id()->integer();
-            $table->passenger_id()->integer()->nullable();
-            $table->start_location_id()->integer();
-            $table->destination_location_id()->integer()->nullable();
+            $table->integer('driver_id');
+            $table->integer('passenger_id')->nullable();
+            $table->integer('start_location_id');
+            $table->integer('destination_location_id')->nullable();
             $table->timestamps();
         });
     }
