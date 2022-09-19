@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Location;
 
 use Illuminate\Http\Request;
 
-class Location extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class Location extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Location::paginate(), 200, );
     }
 
     /**
@@ -45,7 +46,7 @@ class Location extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Location::find($id)->first(), 200, );
     }
 
     /**
