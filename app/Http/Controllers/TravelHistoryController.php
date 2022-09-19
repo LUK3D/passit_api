@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Location;
 
 use Illuminate\Http\Request;
+use App\Models\TravelHistory;
 
-class LocationController extends Controller
+class TravelHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return response()->json(Location::paginate(), 200, );
+        return response()->json(TravelHistory::paginate(), 200);
     }
 
     /**
@@ -35,12 +35,8 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'lat'=>'required',
-            'lon'=>'required'
-        ]);
-
-        return response()->json(Location::create($request->all()), 200, );
+        return response()->json(TravelHistory::create($request->all()), 200);
+        
     }
 
     /**
@@ -51,7 +47,8 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Location::find($id), 200, );
+        return response()->json(TravelHistory::find($id), 200);
+        
     }
 
     /**
@@ -62,7 +59,7 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        
+       
     }
 
     /**
@@ -74,9 +71,9 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $location =  Location::find($id);
-        $location->update($request->all());
-        response()->json($location, 200, );
+        $history =  TravelHistory::find($id);
+        $history->update($request->all());
+        response()->json($history, 200, );
     }
 
     /**
@@ -87,6 +84,6 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        return Location::destroy($id);
+        return TravelHistory::destroy($id);
     }
 }
