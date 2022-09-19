@@ -35,7 +35,12 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'lat'=>'required',
+            'lon'=>'required'
+        ]);
+
+        return response()->json(Location::create($request->all()), 200, );
     }
 
     /**
@@ -46,7 +51,7 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Location::find($id)->first(), 200, );
+        return response()->json(Location::find($id), 200, );
     }
 
     /**
@@ -57,7 +62,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location =  Location::find($id);
+        $location->update($request->all());
+        response()->json($location, 200, );
     }
 
     /**
@@ -80,6 +87,6 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Location::destroy($id);
     }
 }
