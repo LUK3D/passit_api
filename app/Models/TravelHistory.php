@@ -20,4 +20,43 @@ class TravelHistory extends Model
         'start_location_id',
         'destination_location_id',
     ];
+
+
+ 
+    /**
+     * Get the user that owns the TravelHistory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'driver_id', 'id');
+    }
+    /**
+     * Get the user that owns the TravelHistory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function passenger()
+    {
+        return $this->belongsTo(User::class, 'passenger_id', 'id');
+    }
+    /**
+     * Get the user that owns the TravelHistory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function start_location()
+    {
+        return $this->belongsTo(Location::class, 'start_location_id', 'id');
+    }
+    /**
+     * Get the user that owns the TravelHistory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function destination_location()
+    {
+        return $this->belongsTo(Location::class, 'destination_location_id', 'id');
+    }
 }

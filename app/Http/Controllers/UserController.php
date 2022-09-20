@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TravelHistory;
+use App\Models\User;
 
-class TravelHistoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TravelHistoryController extends Controller
      */
     public function index()
     {
-        return response()->json(TravelHistory::with(['driver','passenger', 'start_location','destination_location'])->paginate(), 200);
+        return response()->json(User::paginate(), 200);
     }
 
     /**
@@ -35,8 +35,7 @@ class TravelHistoryController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json(TravelHistory::create($request->all()), 200);
-        
+        return response()->json(User::create($request->all()), 200);
     }
 
     /**
@@ -47,9 +46,7 @@ class TravelHistoryController extends Controller
      */
     public function show($id)
     {
-        $reg = TravelHistory::find($id)->with(['driver','passenger', 'start_location','destination_location'])->first();
-        return response()->json($reg, 200);
-        
+        return response()->json(User::find($id), 200);
     }
 
     /**
@@ -60,7 +57,7 @@ class TravelHistoryController extends Controller
      */
     public function edit($id)
     {
-       
+        //
     }
 
     /**
@@ -72,9 +69,10 @@ class TravelHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $history =  TravelHistory::find($id);
-        $history->update($request->all());
-        response()->json($history, 200, );
+        $user = User::find($id);
+        $user->update($request->all());
+
+        return response()->json($user, 200);
     }
 
     /**
@@ -85,6 +83,6 @@ class TravelHistoryController extends Controller
      */
     public function destroy($id)
     {
-        return TravelHistory::destroy($id);
+        return response()->json(User::find($id), 200);
     }
 }
